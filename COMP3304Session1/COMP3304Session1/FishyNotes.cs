@@ -27,9 +27,12 @@ namespace COMP3304Session1
         /// <param name="e"></param>
         private void AddNote_Click(object sender, EventArgs e)
         {
+            // INSTANTIATE _newNote as a new type of FishyNote
             _newNote = new FishyNote();
 
-            if(_newNote != null)
+            // IF _newNote is null OR _newNote has been disposed
+            if(_newNote != null || _newNote.IsDisposed)
+                // show the new note
                 _newNote.Show();
         }
     }
