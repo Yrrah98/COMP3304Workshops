@@ -40,6 +40,7 @@
             this.textBox1.Size = new System.Drawing.Size(780, 22);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Enter your note text here";
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             // 
             // DeleteButton
             // 
@@ -51,6 +52,7 @@
             this.DeleteButton.TabIndex = 1;
             this.DeleteButton.Text = "X";
             this.DeleteButton.UseVisualStyleBackColor = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // MinimiseButton
             // 
@@ -61,6 +63,7 @@
             this.MinimiseButton.TabIndex = 2;
             this.MinimiseButton.Text = "Minimise";
             this.MinimiseButton.UseVisualStyleBackColor = false;
+            this.MinimiseButton.Click += new System.EventHandler(this.MinimiseButton_Click);
             // 
             // FishyNote
             // 
