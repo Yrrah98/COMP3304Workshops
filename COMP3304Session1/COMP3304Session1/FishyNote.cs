@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static COMP3304Session1.Delegates;
 
 namespace COMP3304Session1
 {
@@ -15,11 +16,32 @@ namespace COMP3304Session1
         // DECLARE bool, _collapsed to store a boolean to say whether the note has been minimised or not 
         private bool _collapsed;
 
-        public FishyNote()
+        private RemoveNote _rmvNote;
+
+        private ReplaceNote _rplcNote;
+
+        private RetrieveNote _rtrvNote;
+
+        private int _uid;
+
+        public FishyNote(RemoveNote rmvNote, ReplaceNote rplcNote, RetrieveNote rtrvNote, int pUID)
         {
             _collapsed = true;
 
             InitializeComponent();
+
+            _rmvNote = rmvNote;
+
+            _rplcNote = rplcNote;
+
+            _rtrvNote = rtrvNote;
+
+            _uid = pUID;
+
+            _rplcNote("enter text here", _uid);
+
+            this.textBox1.Text = _rtrvNote(_uid);
+
         }
 
         /// <summary>
@@ -29,7 +51,8 @@ namespace COMP3304Session1
         /// <param name="e"></param>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+
+            _rmvNote(this, _uid);
         }
 
         /// <summary>
@@ -76,7 +99,8 @@ namespace COMP3304Session1
         /// <param name="e"></param>
         private void textBox1_Click(object sender, EventArgs e)
         {
-            this.textBox1.Text = "";
+            // CALL delegate to replace the note text, send the text in the texbox and this forms _uid
+            _rplcNote(this.textBox1.Text, this._uid);
         }
 
         private void FishyNote_Load(object sender, EventArgs e)
