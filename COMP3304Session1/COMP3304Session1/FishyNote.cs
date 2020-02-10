@@ -15,7 +15,7 @@ namespace COMP3304Session1
     {
         // DECLARE bool, _collapsed to store a boolean to say whether the note has been minimised or not 
         private bool _collapsed;
-
+        // DECLARE delegate called _rmvNote, will contain a reference to remove note delegate
         private RemoveNote _rmvNote;
 
         private ReplaceNote _rplcNote;
@@ -26,21 +26,24 @@ namespace COMP3304Session1
 
         public FishyNote(RemoveNote rmvNote, ReplaceNote rplcNote, RetrieveNote rtrvNote, int pUID)
         {
+            // INITALISE
             _collapsed = true;
 
             InitializeComponent();
 
+            // SET _rmvNote as rmvNote paramater
             _rmvNote = rmvNote;
-
+            // SET _rplcNote as rplcNote paramater
             _rplcNote = rplcNote;
-
+            // SET _rtrvNote as rtrvNote paramater
             _rtrvNote = rtrvNote;
-
+            // SET _uid as pUID paramater
             _uid = pUID;
-
+            // CALL _rplcNote and insert "enter text here", sending the _uid of this note
             _rplcNote("enter text here", _uid);
 
             this.textBox1.Text = _rtrvNote(_uid);
+
 
         }
 
