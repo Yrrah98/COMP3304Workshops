@@ -42,10 +42,11 @@ namespace COMP3304Session1
         private void AddNote_Click(object sender, EventArgs e)
         {
             uidIncrementer++;
-            // INSTANTIATE _newNote as a new type of FishyNote
-            _newNote = new FishyNote(this.DeleteNote, this.ReplaceNote, this.RetrieveNote, uidIncrementer);
 
             _noteData.AddNote(uidIncrementer, "");
+
+            // INSTANTIATE _newNote as a new type of FishyNote
+            _newNote = new FishyNote(this.DeleteNote, this.ReplaceNote, this.RetrieveNote, this.ReturnImage, uidIncrementer);
             
 
             // show the new note
@@ -78,6 +79,11 @@ namespace COMP3304Session1
 
             return ((ITextData)_noteData).Retrieve(key);
 
+        }
+
+        private Image ReturnImage(int key)
+        {
+            return _noteData.ReturnImage(key);
         }
 
 

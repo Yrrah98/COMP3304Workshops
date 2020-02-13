@@ -22,9 +22,11 @@ namespace COMP3304Session1
 
         private RetrieveNote _rtrvNote;
 
+        private ReturnImage _rtrnImg;
+
         private int _uid;
 
-        public FishyNote(RemoveNote rmvNote, ReplaceNote rplcNote, RetrieveNote rtrvNote, int pUID)
+        public FishyNote(RemoveNote rmvNote, ReplaceNote rplcNote, RetrieveNote rtrvNote, ReturnImage rtrnImg, int pUID)
         {
             // INITALISE
             _collapsed = true;
@@ -39,10 +41,16 @@ namespace COMP3304Session1
             _rtrvNote = rtrvNote;
             // SET _uid as pUID paramater
             _uid = pUID;
+
+            _rtrnImg = rtrnImg;
             // CALL _rplcNote and insert "enter text here", sending the _uid of this note
             _rplcNote("enter text here", _uid);
 
             this.textBox1.Text = _rtrvNote(_uid);
+
+            this.MinimiseButton.Image = _rtrnImg(_uid);
+
+            
 
 
         }

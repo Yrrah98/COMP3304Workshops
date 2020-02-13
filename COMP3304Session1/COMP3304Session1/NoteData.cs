@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
@@ -20,15 +21,19 @@ namespace COMP3304Session1
 
         private IDictionary<int, Image> _imgDictionary;
 
+        private Random rndImg;
+
         public NoteData()
         {
+
+            rndImg = new Random();
 
             _noteText = new Dictionary<int, String>();
 
             _images = new List<String>();
 
-            ((List<String>)_images).AddRange((Directory.GetFiles(@"C: \Users\Harry.DESKTOP - RB792OQ\source\repos\COMP3304Workshops\COMP3304Session1\COMP3304Session1\Images")));
-
+            ((List<String>)_images).AddRange((Directory.GetFiles((Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\Images")))));
+            
             
 
             _imgDictionary = new Dictionary<int, Image>();
@@ -37,6 +42,12 @@ namespace COMP3304Session1
         public void AddNote(int key, String txt)
         {
             _noteText[key] = txt;
+
+            int rnd = rndImg.Next(0, _images.Count());
+
+            Image nImg = Image.FromFile(_images[rnd]);
+
+            _imgDictionary[key] = nImg;
 
         }
 
@@ -61,6 +72,14 @@ namespace COMP3304Session1
         public void Replace(int key, String replacementTxt)
         {
             _noteText[key] = replacementTxt;
+        }
+
+        public Image ReturnImage(int key)
+        {
+
+            Image rtrnImg = _imgDictionary[key];
+
+            return rtrnImg;
         }
     }
 }
